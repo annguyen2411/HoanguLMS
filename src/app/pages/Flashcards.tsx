@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router';
 import { Zap, TrendingUp, BookOpen, Plus, X } from 'lucide-react';
 import { authUtils } from '../utils/auth';
 import { FlashcardReview } from '../components/FlashcardReview';
-import { Card } from '../components/ui/card';
-import { Button } from '../components/ui/button';
+import { Card } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
 import { spacedRepetition } from '../utils/spacedRepetition';
 import { toast } from 'sonner';
 

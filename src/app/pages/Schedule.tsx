@@ -5,8 +5,8 @@ import { authUtils } from '../utils/auth';
 import { StudyCalendar } from '../components/StudyCalendar';
 import { StudyReminderSettings } from '../components/StudyReminderSettings';
 import { GoalSettingModal } from '../components/GoalSettingModal';
-import { Card } from '../components/ui/card';
-import { Button } from '../components/ui/button';
+import { Card } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
 import { smartScheduler } from '../utils/smartScheduler';
 
 export function Schedule() {

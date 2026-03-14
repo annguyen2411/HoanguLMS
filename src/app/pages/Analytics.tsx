@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { BarChart3, TrendingUp, Download } from 'lucide-react';
 import { authUtils } from '../utils/auth';
-import { Button } from '../components/ui/button';
+import { Button } from '../components/ui/Button';
 import { PerformanceStats } from '../components/PerformanceStats';
 import { StudyTimeChart } from '../components/StudyTimeChart';
 import { SkillRadarChart } from '../components/SkillRadarChart';

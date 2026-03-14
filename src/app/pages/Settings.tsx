@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Settings as SettingsIcon, User, Bell, Lock, Globe, Moon, Zap, Download } from 'lucide-react';
 import { authUtils } from '../utils/auth';
-import { Card } from '../components/ui/card';
-import { Button } from '../components/ui/button';
-import { Label } from '../components/ui/label';
-import { Switch } from '../components/ui/switch';
+import { Card } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
+import { Label } from '../components/ui/Label';
+import { Switch } from '../components/ui/Switch';
 import { Separator } from '../components/ui/separator';
 import { OfflineCoursesManager } from '../components/OfflineCoursesManager';
 
