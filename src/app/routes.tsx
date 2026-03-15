@@ -100,6 +100,14 @@ export const router = createBrowserRouter([
     ),
   },
   {
+    path: 'register',
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <Auth />
+      </Suspense>
+    ),
+  },
+  {
     path: 'checkout/:courseId',
     element: (
       <Suspense fallback={<PageLoader />}>
