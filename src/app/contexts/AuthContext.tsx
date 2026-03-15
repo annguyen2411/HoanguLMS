@@ -36,58 +36,32 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const MOCK_USER: UserProfile = {
-  id: 'mock-user-1',
-  email: 'demo@hoangữ.com',
-  full_name: 'Học viên Demo',
-  avatar_url: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200',
-  role: 'student',
-  level: 5,
-  xp: 1250,
-  total_xp: 1500,
-  xp_to_next_level: 2000,
-  coins: 500,
-  streak: 7,
-  completed_quests: 15,
-  language: 'vi',
-  theme: 'light',
-  notification_enabled: true,
-  created_at: new Date().toISOString(),
-};
-
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isSupabaseConfigured, setIsSupabaseConfigured] = useState(true);
 
-  useEffect(() => {
-    if (!supabase) {
-      setIsSupabaseConfigured(false);
-      setIsLoading(false);
-      return;
-    }
+  const fetchProfile = async (userId: string): Promise<UserProfile | null> => {
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', userId)
+        .single();
 
-    const fetchProfile = async (userId: string) => {
-      try {
-        const { data, error } = await supabase
-          .from('users')
-          .select('*')
-          .eq('id', userId)
-          .single();
-
-        if (error) {
-          console.error('Error fetching profile:', error);
-          return null;
-        }
-        return data as UserProfile;
-      } catch (error) {
+      if (error) {
         console.error('Error fetching profile:', error);
         return null;
       }
-    };
+      return data as UserProfile;
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+      return null;
+    }
+  };
 
+  useEffect(() => {
     const initAuth = async () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
@@ -122,15 +96,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      if (subscription) {
+        subscription.unsubscribe();
+      }
+    };
   }, []);
 
   const login = async (email: string, password: string): Promise<void> => {
-    if (!supabase) {
-      setProfile(MOCK_USER);
-      return;
-    }
-
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -145,11 +118,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const register = async (name: string, email: string, password: string): Promise<void> => {
-    if (!supabase) {
-      setProfile({ ...MOCK_USER, email, full_name: name });
-      return;
-    }
-
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -186,18 +154,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = async (): Promise<void> => {
-    if (!supabase) {
-      setProfile(null);
-      return;
-    }
-
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
     setProfile(null);
   };
 
   const updateProfile = async (updates: Partial<UserProfile>): Promise<void> => {
-    if (!supabase || !user) return;
+    if (!user) return;
 
     const { error } = await supabase
       .from('users')
@@ -210,7 +173,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const refreshProfile = async (): Promise<void> => {
-    if (!supabase || !user) return;
+    if (!user) return;
     const userProfile = await fetchProfile(user.id);
     setProfile(userProfile);
   };
@@ -220,7 +183,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     profile,
     session,
     isLoading,
-    isAuthenticated: !!user || !!profile,
+    isAuthenticated: !!user,
     login,
     register,
     logout,
