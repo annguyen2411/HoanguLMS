@@ -169,7 +169,7 @@ export function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {features.map((feature) => {
+            {features.map((feature, idx) => {
               const Icon = iconMap[feature.icon];
               return (
                 <motion.div
@@ -177,7 +177,7 @@ export function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  transition={{ duration: 0.4, delay: idx * 0.05 }}
                 >
                   <div className="inline-flex items-center justify-center w-14 h-14 border border-border mb-6">
                     <Icon className="h-7 w-7 text-foreground" />
