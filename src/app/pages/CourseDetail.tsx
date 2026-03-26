@@ -130,7 +130,7 @@ export function CourseDetail() {
 
                   {isEnrolled ? (
                     <Link
-                      to="/dashboard"
+                      to={`/courses/${course.slug}`}
                       className="block w-full py-4 bg-green-600 text-white text-center rounded-lg font-bold text-lg hover:bg-green-700 transition-colors mb-3"
                     >
                       Tiếp tục học
