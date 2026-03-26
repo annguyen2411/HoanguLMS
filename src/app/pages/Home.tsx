@@ -132,8 +132,8 @@ export function Home() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1674154082573-6a825a8a7c02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800"
-                  alt="Vietnamese woman in ao dai learning Chinese"
+                  src="https://images.unsplash.com/photo-1569163139599-0f4517e36f51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800"
+                  alt="Tử Cấm Thành - Forbidden City Beijing"
                   className="w-full h-auto"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
