@@ -101,6 +101,18 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Cache-first for static assets (images, CSS, JS)
+  // Skip external images (unsplash, etc) - use network only
+  const isExternalImage = url.hostname !== location.hostname && request.destination === 'image';
+  
+  if (isExternalImage) {
+    event.respondWith(
+      fetch(request).catch(() => {
+        return new Response('', { status: 404 });
+      })
+    );
+    return;
+  }
+
   if (
     request.destination === 'image' ||
     request.destination === 'style' ||
