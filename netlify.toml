@@ -8,11 +8,23 @@
 [context.production.environment]
   VITE_API_URL = "https://hoangu-lms-api.onrender.com/api"
 
+<<<<<<< HEAD
 [[redirects]]
   from = "/api/*"
   to = "https://hoangu-lms-api.onrender.com/api/:splat"
   status = 200
   force = true
+=======
+[dev]
+  command = "npm run dev"
+  targetPort = 5173
+  port = 5173
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+>>>>>>> 09709f3537b48a026a10ad493d1f44513a852194
 
 [[headers]]
   for = "/*"
@@ -21,4 +33,8 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+<<<<<<< HEAD
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob: *.unsplash.com; font-src 'self' data:; connect-src 'self' https://hoangu-lms-api.onrender.com https://hoangu.techhave.com https://*.unsplash.com https://*.supabase.co wss: https:; media-src 'self' https: blob:; object-src 'none';"
+=======
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob: *.unsplash.com; font-src 'self' data:; connect-src 'self' https://hoangu-lms-api.onrender.com https://*.unsplash.com https://*.supabase.co wss: https:; media-src 'self' https: blob:; object-src 'none';"
+>>>>>>> 09709f3537b48a026a10ad493d1f44513a852194
