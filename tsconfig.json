@@ -20,7 +20,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
-  "exclude": ["src/server"],
+  "include": ["src/app", "src/lib", "src/styles"],
+  "exclude": ["src/backend"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
