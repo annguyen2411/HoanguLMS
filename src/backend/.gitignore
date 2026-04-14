@@ -1,7 +1,5 @@
 # Dependencies
 node_modules
-
-# Build outputs
 dist
 
 # Environment variables
@@ -10,8 +8,8 @@ dist
 .env.*.local
 
 # Logs
-logs
 *.log
+npm-debug.log*
 
 # IDE
 .vscode
@@ -20,10 +18,3 @@ logs
 # OS
 .DS_Store
 Thumbs.db
-
-# Coverage
-coverage
-
-# Secrets
-*.pem
-*.key

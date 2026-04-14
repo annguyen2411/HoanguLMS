@@ -1,9 +1,10 @@
 services:
+  # Backend API
   - type: web
     name: hoangu-lms-api
     env: node
     region: oregon
-    buildCommand: cd src/backend && rm -f package-lock.json && npm install --include=dev && npm run build
+    buildCommand: cd src/backend && rm -f package-lock.json && npm install && npx vite build --config vite.server.config.ts
     startCommand: cd src/backend && npm start
     envVars:
       - key: NODE_ENV
@@ -36,3 +37,15 @@ services:
         value: logs
     autoDeploy: true
     healthCheckPath: /api/health
+
+  # Frontend Static Site
+  - type: web
+    name: hoangu-lms-frontend
+    env: static
+    region: oregon
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://hoangu-lms-api.onrender.com/api
+    autoDeploy: true
