@@ -45,9 +45,9 @@ import instructorsRoutes from './routes/instructors';
 import studentRoutes from './routes/student';
 import quizRoutes from './routes/quizzes';
 import analyticsRoutes from './routes/analytics';
-import homeRoutes from './routes/home';
-import testimonialsRoutes from './routes/testimonials';
-import publicRoutes from './routes/public';
+// import homeRoutes from './routes/home';
+// import testimonialsRoutes from './routes/testimonials';
+// import publicRoutes from './routes/public';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -111,9 +111,9 @@ app.use('/api/instructors', instructorsRoutes);
 app.use('/api/student', studentRoutes);
 app.use('/api/quizzes', quizRoutes);
 app.use('/api/analytics', analyticsRoutes);
-app.use('/api/home', homeRoutes);
-app.use('/api/testimonials', testimonialsRoutes);
-app.use('/api', publicRoutes);
+// app.use('/api/home', homeRoutes);
+// app.use('/api/testimonials', testimonialsRoutes);
+// app.use('/api', publicRoutes);
 
 app.use('/api/docs', swaggerRouter, swaggerSetup);
 app.get('/api/docs.json', (req, res) => {
