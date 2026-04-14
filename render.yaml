@@ -4,7 +4,7 @@ services:
     name: hoangu-lms-api
     env: node
     region: oregon
-    buildCommand: rm -f package-lock.json && npm install --include=dev && npm run build
+    buildCommand: rm -f package-lock.json && npm install --include=dev && npx vite build --config vite.server.config.ts
     startCommand: npm start
     envVars:
       - key: NODE_ENV
